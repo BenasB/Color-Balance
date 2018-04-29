@@ -16,5 +16,13 @@ namespace Image_Inspector
         {
             InitializeComponent();
         }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog.ShowDialog();
+
+            PictureBox pictureBox = MainPictureBox;
+            pictureBox.Image = Image.FromFile(OpenFileDialog.FileName);
+        }
     }
 }
