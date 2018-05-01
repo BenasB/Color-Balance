@@ -1,8 +1,9 @@
 # Image-Inspector
 
 Features:
+* Load/Save image
 * Color correction
-* others may come...
+* Others may come...
 
 [Download the .exe](https://www.dropbox.com/s/luz19thrfhxs174/Image-Inspector.exe?dl=0)
 
