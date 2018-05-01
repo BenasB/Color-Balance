@@ -33,13 +33,13 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RedTrackBar = new System.Windows.Forms.TrackBar();
             this.RedLabel = new System.Windows.Forms.Label();
             this.BlueLabel = new System.Windows.Forms.Label();
             this.BlueTrackBar = new System.Windows.Forms.TrackBar();
             this.GreenLabel = new System.Windows.Forms.Label();
             this.GreenTrackBar = new System.Windows.Forms.TrackBar();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.MainPictureBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -87,9 +87,16 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // RedTrackBar
             // 
@@ -167,13 +174,6 @@
             this.GreenTrackBar.Value = 255;
             this.GreenTrackBar.ValueChanged += new System.EventHandler(this.TrackBarChanged);
             // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.saveToolStripMenuItem.Text = "Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
-            // 
             // SaveFileDialog
             // 
             this.SaveFileDialog.Filter = "Png Images(*.png)|*.png|Jpeg Images(*.jpg)|*.jpg";
@@ -193,7 +193,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Image Inspector";
             ((System.ComponentModel.ISupportInitialize)(this.MainPictureBox)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
