@@ -2,7 +2,7 @@
 
 Features:
 * Load/Save image
-* Color correction
+* Color balance
 * Others may come...
 
 [Download the .exe](https://www.dropbox.com/s/luz19thrfhxs174/Image-Inspector.exe?dl=0)
