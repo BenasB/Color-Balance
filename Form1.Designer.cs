@@ -1,4 +1,4 @@
-﻿namespace Color_Balance
+﻿namespace Image_Inspector
 {
     partial class Form1
     {
