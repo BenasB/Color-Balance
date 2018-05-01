@@ -1,17 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace Image_Inspector
 {
     public partial class Form1 : Form
     {
+        private Bitmap originalBitmap = null;
+        private Bitmap previewBitmap = null;
+        private Bitmap resultBitmap = null;
+
         public Form1()
         {
             InitializeComponent();
@@ -19,10 +19,64 @@ namespace Image_Inspector
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog.ShowDialog();
+            if (OpenFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                StreamReader streamReader = new StreamReader(OpenFileDialog.FileName);
+                originalBitmap = (Bitmap)Bitmap.FromStream(streamReader.BaseStream);
+                streamReader.Close();
 
-            PictureBox pictureBox = MainPictureBox;
-            pictureBox.Image = Image.FromFile(OpenFileDialog.FileName);
+                previewBitmap = originalBitmap;
+                MainPictureBox.Image = previewBitmap;
+
+                UpdateImage();
+
+                RedTrackBar.Enabled = true;
+                GreenTrackBar.Enabled = true;
+                BlueTrackBar.Enabled = true;
+                TrackBarChanged(null, null);
+            }
+        }
+
+        private void TrackBarChanged(object sender, EventArgs e)
+        {
+            RedLabel.Text = "Red: " + RedTrackBar.Value;
+            GreenLabel.Text = "Green: " + GreenTrackBar.Value;
+            BlueLabel.Text = "Blue: " + BlueTrackBar.Value;
+            UpdateImage();
+        }
+
+        private void UpdateImage()
+        {
+            if (previewBitmap == null)
+                return;
+
+            MainPictureBox.Image = previewBitmap.Balance((byte)RedTrackBar.Value, (byte)GreenTrackBar.Value, (byte)BlueTrackBar.Value);
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (originalBitmap == null)
+                return;
+
+            resultBitmap = originalBitmap.Balance((byte)RedTrackBar.Value, (byte)GreenTrackBar.Value, (byte)BlueTrackBar.Value);
+
+            if (SaveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string fileExtension = Path.GetExtension(SaveFileDialog.FileName).ToUpper();
+
+                ImageFormat imageFormat = ImageFormat.Png;
+
+                if (fileExtension == "JPG")
+                    imageFormat = ImageFormat.Jpeg;
+
+                StreamWriter streamWriter = new StreamWriter(SaveFileDialog.FileName, false);
+                resultBitmap.Save(streamWriter.BaseStream, imageFormat);
+                streamWriter.Flush();
+                streamWriter.Close();
+                SaveFileDialog.FileName = "";
+
+                resultBitmap = null;
+            }
         }
     }
 }
