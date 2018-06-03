@@ -9,4 +9,7 @@ Features:
 
 ![GIF](https://i.imgur.com/OIlgRva.gif)
 
+Todo:
+* Fix numbers besides the colors
+
 Special thanks to [SoftwareByDefault](https://softwarebydefault.com/2013/04/11/bitmap-color-balance/)
